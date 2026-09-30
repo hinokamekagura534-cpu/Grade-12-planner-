@@ -319,6 +319,12 @@ body,button,input,select,textarea,h1,h2,h3,th,td{font-family:'Speda','Segoe UI',
 <button id="menuToggle" class="no-print" type="button" onclick="toggleSidebar()" aria-label="کردنەوەی بەشەکان">☰ بەشەکان</button>
 <div id="sidebarOverlay" class="no-print" onclick="closeSidebar()" aria-hidden="true"></div>
 <header class="header">
+ <header>
+    <!-- دوگمەی ئاگادارکردنەوە لێرە دابنە -->
+    <button onclick="initNotifications()" style="margin-bottom: 10px; padding: 8px 15px; background: #4f46e5; color: white; border: none; border-radius: 8px; cursor: pointer;">کاراکردنی ئاگادارکردنەوەکان</button>
+
+    <h1 class="blue">Grade 12 Planner</h1>
+    ...
 <h1 class="blue">Grade 12 Planner ⚔️</h1>
 <p class="muted">گەشەپێدەر: <span class="purple">Safen Sartip ismail</span> | <span class="purple">Sung Jin-Woo</span></p>
 <div class="notice">🟢 100% OFFLINE — هیچ Internet / API / CDN بەکارناهێنرێت</div>
@@ -1636,7 +1642,8 @@ $("noteDate").value=tdy();renderAll();renderInfo();renderAdhanSettings();loadAdh
     else alert("iPhone: دوگمەی Share (⬆️) دابگرە، ئینجا «Add to Home Screen» هەڵبژێرە.");
   };
 })();
-</script><script>
+</script>
+ <script>
   // ١. داوای ڕێگەپێدان لە بەکارهێنەر
   function initNotifications() {
     if (!("Notification" in window)) {
@@ -1653,24 +1660,6 @@ $("noteDate").value=tdy();renderAll();renderInfo();renderAdhanSettings();loadAdh
       }
     });
   }
-
-  // ٢. فەنکشنی سەرەکی بۆ نیشاندانی ئاگادارکردنەوە
-  function showLocalNotification(title, bodyText) {
-    if ("serviceWorker" in navigator && Notification.permission === "granted") {
-      navigator.serviceWorker.ready.then(registration => {
-        registration.showNotification(title, {
-          body: bodyText,
-          icon: "icon-192.png",
-          badge: "icon-192.png",
-          vibrate: [200, 100, 200]
-        });
-      });
-    }
-  }
-</script>}
-  }
-</script>
-
 <!-- دوگمەی کاراکردنی ئاگادارکردنەوەکان لێرە دابنە -->
 <button onclick="initNotifications()">کاراکردنی ئاگادارکردنەوەکان</button>
 
