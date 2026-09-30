@@ -295,7 +295,7 @@ body,button,input,select,textarea,h1,h2,h3,th,td{font-family:'Speda','Segoe UI',
 .owner-notice-item b{color:#00f0ff}
 .owner-notice-empty{padding:12px;border:1px dashed #ffffff22;border-radius:12px;color:#9ca3af}
 </style>
-<link rel="manifest" href="manifest.json"/><meta name="theme-color" content="#07162a"/><link rel="apple-touch-icon" href="icon-192.png"/><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="mobile-web-app-capable" content="yes"/>
+<link rel="manifest" href="manifest.json"/><meta name="theme-color" content="#07162a"/><link rel="apple-touch-icon" href="icon-v2-192.png"/><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="mobile-web-app-capable" content="yes"/>
 </head>
 </head>
 <body>
@@ -1652,7 +1652,7 @@ $("noteDate").value=tdy();renderAll();renderInfo();renderAdhanSettings();loadAdh
   window.g12Notify=function(title,body){
     try{
       if(!window.Notification||Notification.permission!=="granted"||!pref())return;
-      const o={body:body||"",icon:"icon-192.png",badge:"icon-192.png",tag:"g12-alarm",vibrate:[200,100,200]};
+      const o={body:body||"",icon:"icon-v2-192.png",badge:"icon-v2-192.png",tag:"g12-alarm",vibrate:[200,100,200]};
       if(navigator.serviceWorker&&navigator.serviceWorker.ready){navigator.serviceWorker.ready.then(r=>r.showNotification(title,o)).catch(()=>{try{new Notification(title,o)}catch(e){}})}
       else new Notification(title,o);
     }catch(e){}
