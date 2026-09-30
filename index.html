@@ -701,6 +701,7 @@ body,button,input,select,textarea,h1,h2,h3,th,td{font-family:'Speda','Segoe UI',
 <div class="grid2"><button class="btn btn-glow" onclick="ownerListProfiles()">👥 پروفایلەکانی ئەم ئامێرە</button><button class="btn btn-dark" onclick="ownerExportAll()">💾 Backup ـی هەموو داتا</button></div>
 <div class="grid2" style="margin-top:8px"><button class="btn btn-dark" onclick="$('ownerImportFile').click()">📂 گەڕاندنەوەی Backup</button><button class="btn btn-red" onclick="ownerResetMyData()">♻️ ڕیسێتی داتای Owner</button></div>
 <input type="file" id="ownerImportFile" accept=".json" style="display:none" onchange="ownerImportAll(this)"/>
+<div class="grid2" style="margin-top:8px"><button class="btn btn-glow" onclick="ownerExportAnnouncements()">📤 دروستکردنی announcements.json</button><button class="btn btn-dark" onclick="g12CheckAnnouncements(true)">🔄 پشکنینی ئێستا</button></div><p class="small muted">دوای ناردنی ئاگاداری، ئەم دوگمەیە دابگرە و فایلەکە لە GitHub بارکە (جێگەی کۆنەکە) تا بگاتە هەموو کەس.</p>
 <div id="ownerProfilesList" style="margin-top:10px"></div>
 
 </div>
@@ -1676,6 +1677,51 @@ $("noteDate").value=tdy();renderAll();renderInfo();renderAdhanSettings();loadAdh
   if(typeof orig==="function"){window.startAlarm=function(k,msg,cb){try{g12Notify("⏰ Grade 12 Planner",msg||"")}catch(e){}return orig.apply(this,arguments)}}
   document.addEventListener("click",()=>setTimeout(paint,50));
   window.addEventListener("load",paint);
+})();
+</script>
+<script>
+(function(){
+  const RK="g12_remote_notices",SK="g12_seen_notices";
+  const jget=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}};
+  const jset=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+  const baseGet=window.getOwnerNotifications;
+  window.getOwnerNotifications=function(){
+    const m=new Map();
+    [].concat(jget(RK,[]),baseGet()).forEach(n=>{if(n&&n.id&&!m.has(n.id))m.set(n.id,n)});
+    return [...m.values()].sort((a,b)=>new Date(b.time)-new Date(a.time));
+  };
+  let busy=false;
+  window.g12CheckAnnouncements=async function(manual){
+    if(busy)return;busy=true;
+    try{
+      const r=await fetch("announcements.json?t="+Date.now(),{cache:"no-store"});
+      if(!r.ok)throw new Error("http "+r.status);
+      const list=await r.json();if(!Array.isArray(list))throw new Error("bad");
+      const clean=list.filter(n=>n&&n.id&&n.title&&n.body).slice(0,50);
+      const firstRun=localStorage.getItem(SK)===null;
+      const seen=new Set(jget(SK,[]));
+      const fresh=clean.filter(n=>!seen.has(n.id));
+      jset(RK,clean);
+      jset(SK,clean.map(n=>n.id));
+      if(!firstRun)fresh.slice(0,3).forEach(n=>{g12Notify("📢 "+n.title,n.body);if(window.toast)toast("📢 "+n.title)});
+      if(typeof renderUserNotifications==="function")renderUserNotifications();
+      if(typeof renderOwnerNotifications==="function")renderOwnerNotifications();
+      if(manual&&window.toast)toast(fresh.length?"📢 "+fresh.length+" ئاگاداری نوێ":"✅ ئاگاداری نوێ نییە");
+    }catch(e){if(manual&&window.toast)toast("⚠️ نەتوانرا ئاگاداریەکان بخوێنرێتەوە")}
+    busy=false;
+  };
+  window.ownerExportAnnouncements=function(){
+    if(!state.isOwner)return toast("🔒 تەنها Owner");
+    const all=window.getOwnerNotifications().map(n=>({id:n.id,title:n.title,body:n.body,time:n.time}));
+    const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(all,null,1)],{type:"application/json"}));
+    a.download="announcements.json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+    toast("📤 announcements.json دروست کرا — لە GitHub بارکە");
+  };
+  if(location.protocol.startsWith("http")){
+    window.addEventListener("load",()=>setTimeout(()=>g12CheckAnnouncements(false),1500));
+    document.addEventListener("visibilitychange",()=>{if(!document.hidden)g12CheckAnnouncements(false)});
+    setInterval(()=>{if(!document.hidden)g12CheckAnnouncements(false)},300000);
+  }
 })();
 </script>
 </body></html>
