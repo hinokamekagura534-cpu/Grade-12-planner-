@@ -319,12 +319,6 @@ body,button,input,select,textarea,h1,h2,h3,th,td{font-family:'Speda','Segoe UI',
 <button id="menuToggle" class="no-print" type="button" onclick="toggleSidebar()" aria-label="کردنەوەی بەشەکان">☰ بەشەکان</button>
 <div id="sidebarOverlay" class="no-print" onclick="closeSidebar()" aria-hidden="true"></div>
 <header class="header">
- <header>
-    <!-- دوگمەی ئاگادارکردنەوە لێرە دابنە -->
-    <button onclick="initNotifications()" style="margin-bottom: 10px; padding: 8px 15px; background: #4f46e5; color: white; border: none; border-radius: 8px; cursor: pointer;">کاراکردنی ئاگادارکردنەوەکان</button>
-
-    <h1 class="blue">Grade 12 Planner</h1>
-    ...
 <h1 class="blue">Grade 12 Planner ⚔️</h1>
 <p class="muted">گەشەپێدەر: <span class="purple">Safen Sartip ismail</span> | <span class="purple">Sung Jin-Woo</span></p>
 <div class="notice">🟢 100% OFFLINE — هیچ Internet / API / CDN بەکارناهێنرێت</div>
@@ -686,7 +680,14 @@ body,button,input,select,textarea,h1,h2,h3,th,td{font-family:'Speda','Segoe UI',
 </div>
 <div class="stack" id="infoList"></div>
 </section>
-<section class="tab stack" id="tab-settings"><div class="card center glow"><h2 class="blue">⚙️ ڕێکخستن</h2><p class="small muted">ناو، کۆدی ناسین و ڕێکخستنەکانی بەکارهێنەر لێرە هەڵدەگیرێن.</p></div><div class="card"><h3 class="blue">👤 ناوی بەکارهێنەر</h3><input id="settingsName" maxlength="60" placeholder="ناوی خۆت بنووسە..."/><button class="btn btn-glow" onclick="saveSettingsName()" style="width:100%;margin-top:8px">💾 هەڵگرتنی ناو</button><p class="small muted" id="settingsNameStatus" style="margin-top:8px"></p></div><div class="card code-card"><h3 class="purple">🔐 کۆدی تایبەتی بەکارهێنەر</h3><p class="small muted">کۆد بە شێوەی <b>XXXX-NAME-XXXX-0000</b> دروست دەکرێت. داتاکانت لەسەر هەمان ئامێر بە کۆدی خۆت جیا دەکرێنەوە و ئەپەکە هیچ سێرڤەرێکی نییە.</p><div id="userCodeDisplay" class="generated-code">هێشتا کۆد دروست نەکراوە</div><div class="row" style="margin-top:10px"><button class="btn btn-dark" onclick="copyUserCode()">📋 کۆپی کۆد</button><button class="btn btn-glow" onclick="openProfileManager()">👤 پروفایلی نوێ / کۆدی تر</button></div><p class="small muted" id="userCodeStatus" style="margin-top:8px"></p><div class="notice" style="width:100%;box-sizing:border-box">🛡️ کۆدەکە لە ڕێکخستنەکاندا ناگۆڕدرێت و ناتوانرێت بە ئاسانی نوێ بکرێتەوە. ئەگەر کۆد بگۆڕدرێت، دەبێت کۆدی کۆن پێشتر پشتڕاست بکرێتەوە بۆ پاراستنی داتاکانت. تەنها کۆدی تۆمارکراو لەسەر ئەم ئامێرە داتاکانی هەمان پروفایل دەهێنێتەوە.</div></div><div id="ownerSettingsPanel" class="card owner-panel" style="display:none">
+<section class="tab stack" id="tab-settings"><div class="card center glow"><h2 class="blue">⚙️ ڕێکخستن</h2><p class="small muted">ناو، کۆدی ناسین و ڕێکخستنەکانی بەکارهێنەر لێرە هەڵدەگیرێن.</p></div><div class="card"><h3 class="blue">👤 ناوی بەکارهێنەر</h3><input id="settingsName" maxlength="60" placeholder="ناوی خۆت بنووسە..."/><button class="btn btn-glow" onclick="saveSettingsName()" style="width:100%;margin-top:8px">💾 هەڵگرتنی ناو</button><p class="small muted" id="settingsNameStatus" style="margin-top:8px"></p></div><div class="card code-card"><h3 class="purple">🔐 کۆدی تایبەتی بەکارهێنەر</h3><p class="small muted">کۆد بە شێوەی <b>XXXX-NAME-XXXX-0000</b> دروست دەکرێت. داتاکانت لەسەر هەمان ئامێر بە کۆدی خۆت جیا دەکرێنەوە و ئەپەکە هیچ سێرڤەرێکی نییە.</p><div id="userCodeDisplay" class="generated-code">هێشتا کۆد دروست نەکراوە</div><div class="row" style="margin-top:10px"><button class="btn btn-dark" onclick="copyUserCode()">📋 کۆپی کۆد</button><button class="btn btn-glow" onclick="openProfileManager()">👤 پروفایلی نوێ / کۆدی تر</button></div><p class="small muted" id="userCodeStatus" style="margin-top:8px"></p><div class="notice" style="width:100%;box-sizing:border-box">🛡️ کۆدەکە لە ڕێکخستنەکاندا ناگۆڕدرێت و ناتوانرێت بە ئاسانی نوێ بکرێتەوە. ئەگەر کۆد بگۆڕدرێت، دەبێت کۆدی کۆن پێشتر پشتڕاست بکرێتەوە بۆ پاراستنی داتاکانت. تەنها کۆدی تۆمارکراو لەسەر ئەم ئامێرە داتاکانی هەمان پروفایل دەهێنێتەوە.</div></div><div id="notifSettingsCard" class="card">
+ <h3 class="purple">🔔 ئاگادارکردنەوەکان</h3>
+ <p class="small muted">بۆ ئەوەی کاتێک تایمەر یان زەنگ تەواو بوو، ئاگادارییەک لەسەر ئامێرەکەت بێت (تەنانەت ئەگەر ئەپەکە لە پشتەوە بێت).</p>
+ <div id="notifStatus" class="small" style="margin:8px 0"></div>
+ <div class="grid2"><button class="btn btn-glow" onclick="enableNotifications()">🔔 چالاککردن</button><button class="btn btn-dark" onclick="testNotification()">🧪 تاقیکردنەوە</button></div>
+ <label class="small" style="display:flex;gap:8px;align-items:center;margin-top:10px"><input type="checkbox" id="notifToggle" onchange="toggleNotifPref(this.checked)"/> ناردنی ئاگاداری کاتێک تایمەر/زەنگ تەواو دەبێت</label>
+</div>
+<div id="ownerSettingsPanel" class="card owner-panel" style="display:none">
 <h3 class="purple">👑 Owner Center</h3>
 <p class="small muted">تەنها کۆدی Owner ـەکە دەتوانێت ئەم بەشە ببینێت و ئاگاداری بنێرێت.</p>
 <div class="owner-badge">👑 JIN-7K4P-92MX-WOO</div>
@@ -1643,26 +1644,38 @@ $("noteDate").value=tdy();renderAll();renderInfo();renderAdhanSettings();loadAdh
   };
 })();
 </script>
- <script>
-  // ١. داوای ڕێگەپێدان لە بەکارهێنەر
-  function initNotifications() {
-    if (!("Notification" in window)) {
-      alert("وێبگەڕەکەی ئێستات پشتگیری ئاگادارکردنەوە ناکات.");
-      return;
-    }
-
-    Notification.requestPermission().then(permission => {
-      if (permission === "granted") {
-        console.log("ڕێگەپێدان درا.");
-        showLocalNotification("پلەنەری پۆلی ١٢", "سیستەمی ئاگادارکردنەوە کارا بوو!");
-      } else {
-        alert("تکایە ڕێگە بە ئاگادارکردنەوە بدە بۆ ئەوەی یادخستنەوەکانت پێ بگات.");
-      }
-    });
+<script>
+(function(){
+  const PK="g12_notif_pref";
+  const pref=()=>{try{return localStorage.getItem(PK)!=="off"}catch(e){return true}};
+  window.g12Notify=function(title,body){
+    try{
+      if(!window.Notification||Notification.permission!=="granted"||!pref())return;
+      const o={body:body||"",icon:"icon-192.png",badge:"icon-192.png",tag:"g12-alarm",vibrate:[200,100,200]};
+      if(navigator.serviceWorker&&navigator.serviceWorker.ready){navigator.serviceWorker.ready.then(r=>r.showNotification(title,o)).catch(()=>{try{new Notification(title,o)}catch(e){}})}
+      else new Notification(title,o);
+    }catch(e){}
+  };
+  function paint(){
+    const el=document.getElementById("notifStatus"),t=document.getElementById("notifToggle");if(!el)return;
+    if(!window.Notification){el.textContent="ℹ️ ئەم براوزەرە ئاگادارکردنەوە پشتگیری ناکات";return}
+    const p=Notification.permission;
+    el.textContent=p==="granted"?"✅ چالاکە":p==="denied"?"⛔ ڕێگەپێنەدراوە — لە ڕێکخستنی براوزەر (ئایکۆنی قوفڵ) چالاکی بکە":"⚪ هێشتا چالاک نەکراوە";
+    if(t)t.checked=pref();
   }
-<!-- دوگمەی کاراکردنی ئاگادارکردنەوەکان لێرە دابنە -->
-<button onclick="initNotifications()">کاراکردنی ئاگادارکردنەوەکان</button>
-
-</body>
-</html>
+  window.enableNotifications=function(){
+    if(!window.Notification)return paint();
+    Notification.requestPermission().then(()=>{paint();if(Notification.permission==="granted")g12Notify("Grade 12 Planner","✅ ئاگادارکردنەوەکان چالاک بوون")}).catch(paint);
+  };
+  window.testNotification=function(){
+    if(!window.Notification||Notification.permission!=="granted"){paint();return alert("سەرەتا دوگمەی چالاککردن دابگرە.")}
+    g12Notify("Grade 12 Planner","🧪 ئەمە ئاگادارییەکی تاقیکردنەوەیە");
+  };
+  window.toggleNotifPref=function(on){try{localStorage.setItem(PK,on?"on":"off")}catch(e){}};
+  const orig=window.startAlarm;
+  if(typeof orig==="function"){window.startAlarm=function(k,msg,cb){try{g12Notify("⏰ Grade 12 Planner",msg||"")}catch(e){}return orig.apply(this,arguments)}}
+  document.addEventListener("click",()=>setTimeout(paint,50));
+  window.addEventListener("load",paint);
+})();
+</script>
 </body></html>
